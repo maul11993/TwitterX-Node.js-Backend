@@ -6,8 +6,8 @@ exports.up = function (knex) {
   return knex.schema.createTable("Comments", (tbl) => {
     tbl.increments("comment_id");
     tbl.string("comment_content").notNullable();
-    tbl.integer("comment_likes");
-    tbl.integer("comment_reposts");
+    tbl.integer("comment_likes").unsigned();
+    tbl.integer("comment_reposts").unsigned();
     tbl
       .integer("user_key")
       .references("user_key")

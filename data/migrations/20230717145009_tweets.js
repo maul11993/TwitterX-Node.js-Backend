@@ -6,8 +6,8 @@ exports.up = function (knex) {
   return knex.schema.createTable("Tweets", (tbl) => {
     tbl.increments("tweet_id"),
       tbl.string("tweet_content"),
-      tbl.integer("tweet_likes"),
-      tbl.integer("tweet_reposts"),
+      tbl.integer("tweet_likes").unsigned(),
+      tbl.integer("tweet_reposts").unsigned(),
       tbl
         .integer("user_key")
         .references("user_key")

@@ -16,7 +16,7 @@ const TweetsRouter = require("./tweets/tweets-router");
 const UsersRouter = require("./users/users-router");
 const CommentsRouter = require("./comments/comments-router");
 
-server.use("/api/authorization", AuthenticationRouter);
+server.use("/api/auth", AuthenticationRouter);
 server.use("/api/tweets", TweetsRouter);
 server.use("/api/users", UsersRouter);
 server.use("/api/comments", CommentsRouter);
