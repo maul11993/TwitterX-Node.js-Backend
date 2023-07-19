@@ -2,6 +2,7 @@ const router = require("express").Router();
 const userModel = require("../users/users-model");
 const bcrypt = require("bcrypt");
 const { HASH_ROUND } = require("../../config");
+const { generateToken } = require("./auth-middleware");
 
 router.post("/register", async (req, res, next) => {
   try {
@@ -31,7 +32,8 @@ router.post("/login", async (req, res, next) => {
       registeredUser &&
       bcrypt.compareSync(password, registeredUser.password)
     ) {
-      res.json({ message: `Hoşgeldin ${registeredUser.name}` });
+      const token = generateToken(registeredUser);
+      res.json({ message: `Hoşgeldin ${registeredUser.name}`, token });
     } else {
       res.status(401).json({ message: `Hatalı giriş` });
     }
