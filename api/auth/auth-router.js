@@ -39,11 +39,12 @@ router.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const registeredUser = await userModel.getByEmail(email);
+
     if (
       registeredUser &&
       bcrypt.compareSync(password, registeredUser.password)
     ) {
-      const token = generateToken(registeredUser);
+      const token = await generateToken(registeredUser);
       res.json({ message: `Hoşgeldin ${registeredUser.name}`, token });
     } else {
       res.status(401).json({ message: `Hatalı giriş` });

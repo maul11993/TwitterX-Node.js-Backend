@@ -8,16 +8,17 @@ const getAll = () => {
   return db("Users").select("user_key", "name", "username", "email");
 };
 
-const getById = async (user_key) => {
-  return await db("Users")
+const getById = (user_key) => {
+  return db("Users")
     .where("user_key", user_key)
-    .select("user_key", "name", "username", "email");
+    .select("user_key", "name", "username", "email")
+    .first();
 };
 
-const getByEmail = async (email) => {
-  return await db("Users")
+const getByEmail = (email) => {
+  return db("Users")
     .where("email", email)
-    .select("email", "password", "name", "username")
+    .select("email", "password", "name", "username", "role_id", "user_key")
     .first();
 };
 

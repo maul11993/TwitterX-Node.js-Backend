@@ -2,20 +2,20 @@ const router = require("express").Router();
 const userModel = require("./users-model");
 const authMw = require("../auth/auth-middleware");
 
-router.get("/", async (req, res, next) => {
+router.get("/:id", authMw.isIdExist, async (req, res, next) => {
   try {
-    const users = await userModel.getAll();
-    res.json(users);
+    let user_key = req.params.id;
+    const user = await userModel.getById(user_key);
+    res.json(user);
   } catch (error) {
     next(error);
   }
 });
 
-router.get("/:id", authMw.isIdExist, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const user = await userModel.getById(id);
-    res.json(user);
+    const users = await userModel.getAll();
+    res.json(users);
   } catch (error) {
     next(error);
   }

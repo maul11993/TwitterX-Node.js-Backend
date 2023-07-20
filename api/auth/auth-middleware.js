@@ -11,22 +11,21 @@ const restricted = (req, res, next) => {
           req.decodedJWT = decodedJWT;
           next();
         } else {
-          next(err);
+          next({ status: 400, message: "Invalid Token..." });
         }
       });
     } else {
-      res.status(400).json({ message: `Invalid Token...` });
+      res.status(400).json({ message: `Token not found...` });
     }
   } catch (error) {
     next(error);
   }
-  next();
 };
 
 const generateToken = async (user) => {
   const payload = {
-    id: user.id,
-    role_name: user.role_id,
+    user_key: user.user_key,
+    role_id: user.role_id,
     name: user.name,
   };
   const options = {
@@ -37,10 +36,10 @@ const generateToken = async (user) => {
 };
 
 const checkRole = (role) => (req, res, next) => {
-  if (req.decodedJWT.role_name == role || req.decodedJWT.role_name == "admin") {
+  if (req.decodedJWT.role_id == role) {
     next();
   } else {
-    res.status(403).json({ message: `Not Authorized` });
+    next({ status: 403, message: "Not Authorized" });
   }
 };
 
@@ -63,12 +62,12 @@ const isUsernameAvailable = async (req, res, next) => {
 };
 
 const isIdExist = async (req, res, next) => {
-  const { id } = req.params;
+  const id = req.params.id;
   const idFind = await userModel.getById(id);
   if (idFind) {
     next();
   } else {
-    next({ status: 400, message: "Bu id'ye sahip bir kullanıcı bulunamadı" });
+    next({ status: 403, message: "Bu id'ye sahip kullanıcı bulunamadı." });
   }
 };
 
