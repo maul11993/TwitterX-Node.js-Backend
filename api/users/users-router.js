@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const userModel = require("./users-model");
+const authMw = require("../auth/auth-middleware");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -10,7 +11,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", authMw.isIdExist, async (req, res, next) => {
   try {
     const { id } = req.params;
     const user = await userModel.getById(id);
@@ -20,7 +21,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", authMw.isIdExist, async (req, res, next) => {
   try {
     const { id } = req.params;
     const check = await userModel.removeUser(id);
@@ -36,7 +37,7 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", authMw.isIdExist, async (req, res, next) => {
   try {
     const { id } = req.params;
     const check = await userModel.updateUser(id, req.body);

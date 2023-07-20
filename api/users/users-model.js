@@ -10,14 +10,15 @@ const getAll = () => {
 
 const getById = async (user_key) => {
   return await db("Users")
-    .where({ user_key })
+    .where("user_key", user_key)
     .select("user_key", "name", "username", "email");
 };
 
 const getByEmail = async (email) => {
   return await db("Users")
     .where("email", email)
-    .select("email", "password", "name");
+    .select("email", "password", "name", "username")
+    .first();
 };
 
 const addUser = async (newUser) => {

@@ -11,7 +11,7 @@ exports.seed = async function (knex) {
       name: "Batuhan",
       username: "BatuWiT",
       email: "batuhan@workintech.com",
-      password: "batu-workintech",
+      password: "$2b$08$Q8y.Na6OcVNxcj/9mJd9IOFEUzfPC5uJ7YkcNdb8zx4PrUaMuOwfO",
       role_id: "admin",
     },
     {
@@ -19,7 +19,7 @@ exports.seed = async function (knex) {
       name: "Emre",
       username: "EmreWiT",
       email: "emre@workintech.com",
-      password: "emre-workintech",
+      password: "$2b$08$Q8y.Na6OcVNxcj/9mJd9IOFEUzfPC5uJ7YkcNdb8zx4PrUaMuOwfO",
       role_id: "user",
     },
     {
@@ -27,7 +27,7 @@ exports.seed = async function (knex) {
       name: "Veysel",
       username: "VeyselWiT",
       email: "veysel@workintech.com",
-      password: "veysel-workintech",
+      password: "$2b$08$Q8y.Na6OcVNxcj/9mJd9IOFEUzfPC5uJ7YkcNdb8zx4PrUaMuOwfO",
       role_id: "user",
     },
     {
@@ -35,7 +35,7 @@ exports.seed = async function (knex) {
       name: "Erhan",
       username: "ErhanWiT",
       email: "erhan@workintech.com",
-      password: "erhan-workintech",
+      password: "$2b$08$Q8y.Na6OcVNxcj/9mJd9IOFEUzfPC5uJ7YkcNdb8zx4PrUaMuOwfO",
       role_id: "user",
     },
     {
@@ -43,7 +43,7 @@ exports.seed = async function (knex) {
       name: "Dogancan",
       username: "DogancanWiT",
       email: "dogancan@workintech.com",
-      password: "dogancan-workintech",
+      password: "$2b$08$Q8y.Na6OcVNxcj/9mJd9IOFEUzfPC5uJ7YkcNdb8zx4PrUaMuOwfO",
       role_id: "user",
     },
   ]);

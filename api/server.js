@@ -4,7 +4,7 @@ require("dotenv").config();
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
-const { restricted } = require("./auth/auth-middleware");
+const { restricted, checkRole } = require("./auth/auth-middleware");
 
 server.use(express.json());
 server.use(cors());
@@ -18,7 +18,7 @@ const CommentsRouter = require("./comments/comments-router");
 
 server.use("/api/auth", AuthenticationRouter);
 server.use("/api/tweets", TweetsRouter);
-server.use("/api/users", restricted, UsersRouter);
+server.use("/api/users", restricted, checkRole("admin"), UsersRouter);
 server.use("/api/comments", CommentsRouter);
 
 server.use((err, req, res, next) => {

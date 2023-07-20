@@ -2,27 +2,38 @@ const router = require("express").Router();
 const userModel = require("../users/users-model");
 const bcrypt = require("bcrypt");
 const { HASH_ROUND } = require("../../config");
-const { generateToken } = require("./auth-middleware");
+const {
+  generateToken,
+  isEmailAvailable,
+  isUsernameAvailable,
+} = require("./auth-middleware");
+const { payloadCheck } = require("../users/users-middleware");
 
-router.post("/register", async (req, res, next) => {
-  try {
-    const payload = req.body;
-    payload.password = bcrypt.hashSync(payload.password, Number(HASH_ROUND));
-    console.log(payload.password);
-    const newUser = await userModel.addUser(payload);
-    if (newUser) {
-      res
-        .status(201)
-        .json({ message: `Yeni kullanıcı başarıyla oluşturuldu...` });
-    } else {
-      res
-        .status(400)
-        .json({ message: `Kullanıcı oluşturulurken bir hata meydana geldi!` });
+router.post(
+  "/register",
+  payloadCheck,
+  isEmailAvailable,
+  isUsernameAvailable,
+  async (req, res, next) => {
+    try {
+      const payload = req.body;
+      payload.password = bcrypt.hashSync(payload.password, Number(HASH_ROUND));
+      console.log(payload.password);
+      const newUser = await userModel.addUser(payload);
+      if (newUser) {
+        res
+          .status(201)
+          .json({ message: `Yeni kullanıcı başarıyla oluşturuldu...` });
+      } else {
+        res.status(400).json({
+          message: `Kullanıcı oluşturulurken bir hata meydana geldi!`,
+        });
+      }
+    } catch (error) {
+      next(error);
     }
-  } catch (error) {
-    next(error);
   }
-});
+);
 
 router.post("/login", async (req, res, next) => {
   try {
