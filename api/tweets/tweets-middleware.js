@@ -1,14 +1,14 @@
 const tweetModel = require("./tweets-model");
 
 const tweetPayload = (req, res, next) => {
-  let tweet = req.body;
+  let tweet = req.body.tweet_content;
   try {
-    if ((tweet.length = 0)) {
+    if (tweet.length < 1) {
       res.status(400).json({ message: "Tweet content can not be left blank!" });
     } else if (tweet.length > 100) {
       res
         .status(400)
-        .json({ message: "Tweets can not contain more than 140 characters" });
+        .json({ message: "Tweets can not contain more than 100 characters" });
     } else {
       next();
     }

@@ -4,7 +4,7 @@
   "description": "Tebrikler, Backend konularını tamamladın.",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --silent",
+    "test": "cross-env NODE_ENV=testing jest --verbose --watchAll --runInBand --silent",
     "server": "nodemon index.js",
     "migrate": "knex migrate:latest"
   },
@@ -31,9 +31,11 @@
     "sqlite3": "^5.1.6"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.3",
     "cross-env": "^7.0.3",
     "eslint": "^8.44.0",
     "jest": "^29.6.1",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "supertest": "^6.3.3"
   }
 }
