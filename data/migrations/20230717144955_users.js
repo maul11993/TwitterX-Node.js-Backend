@@ -9,7 +9,7 @@ exports.up = function (knex) {
     tbl.string("username", 50).notNullable().unique();
     tbl.string("email", 50).notNullable().unique();
     tbl.string("password", 50).notNullable();
-    tbl.integer("role_id", 50).notNullable().defaultTo("user");
+    tbl.string("role_id", 50).notNullable().defaultTo("user");
   });
 };
 

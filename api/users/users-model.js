@@ -26,8 +26,8 @@ const addUser = async (newUser) => {
   return await db("Users").insert(newUser);
 };
 
-const updateUser = async (updatedKey, updatedUserId) => {
-  return await db("Users").where("user_key", updatedKey).update(updatedUserId);
+const updateUser = async (updatedKey, payload) => {
+  return await db("Users").where("user_key", updatedKey).update(payload);
 };
 
 const removeUser = async (removedUserId) => {
