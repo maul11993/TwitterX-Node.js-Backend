@@ -1,7 +1,7 @@
 {
-  "name": "fsweb-backend-challenge",
+  "name": "twitterx-nodejs-backend",
   "version": "1.0.0",
-  "description": "Tebrikler, Backend konularını tamamladın.",
+  "description": "TwitterX-Node.js-Backend",
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=testing jest --verbose --watchAll --runInBand --silent",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Batuhan-Tas/fsweb-backend-challenge.git"
+    "url": "https://github.com/Batuhan-Tas/TwitterX-Node.js-Backend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Batuhan-Tas/fsweb-backend-challenge/issues"
+    "url": "https://github.com/Batuhan-Tas/TwitterX-Node.js-Backend.git"
   },
-  "homepage": "https://github.com/Batuhan-Tas/fsweb-backend-challenge#readme",
+  "homepage": "https://github.com/Batuhan-Tas/TwitterX-Node.js-Backend.git",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
